@@ -191,5 +191,6 @@ The PCAP stream lost sync. The tool will automatically attempt to re-sync to the
 ---
 
 ## License
+Released under the [MIT License](./LICENSE.txt).
 
 This project is released for educational and research purposes. Use responsibly and only on networks you own or have explicit permission to monitor.
