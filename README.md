@@ -2,7 +2,6 @@
 
 A real-time Wi-Fi packet sniffer built on the ESP32. The ESP32 runs in promiscuous mode, captures raw 802.11 frames, and streams them over USB serial in PCAP format to a Python host tool that decodes, classifies, and displays them in a live color-coded terminal view.
 
----
 
 ## System Architecture
 
@@ -13,7 +12,6 @@ The system is split into two halves:
 - **ESP32 firmware** — puts the Wi-Fi radio into promiscuous mode, hops channels every 500 ms, wraps every captured frame in a PCAP packet header, and streams the raw bytes over UART at 921600 baud.
 - **Python host tool** — syncs to the PCAP magic bytes, reads packet headers and frames, decodes the 802.11 control field, resolves vendor names from MAC addresses, and prints a live colored packet log with periodic statistics.
 
----
 
 ## Live Output
 
@@ -34,7 +32,6 @@ Each line shows:
 
 Every 50 packets a summary line prints packet rate and top frame types.
 
----
 
 ## Project Structure
 
@@ -52,7 +49,6 @@ ESP-Sniffer/
 └── sniffer.py           # Python host tool
 ```
 
----
 
 ## Requirements
 
@@ -79,7 +75,6 @@ pip install -r requirements.txt
 | `manuf` | MAC address OUI vendor lookup |
 | `requests` | Downloading updated Wireshark manuf database |
 
----
 
 ## Flashing the ESP32
 
@@ -90,7 +85,6 @@ pip install -r requirements.txt
 
 The firmware immediately starts capturing and streaming PCAP data once it boots.
 
----
 
 ## Running the Python Tool
 
@@ -124,7 +118,6 @@ python sniffer.py --update 1
 
 Downloads the latest Wireshark OUI database from `https://www.wireshark.org/download/automated/data/manuf` and saves it to `manuf.txt`.
 
----
 
 ## How It Works
 
@@ -159,7 +152,6 @@ Downloads the latest Wireshark OUI database from `https://www.wireshark.org/down
 | PCAP link type | 802.11 (DLT 1) |
 | PCAP endianness | Little-endian (magic `D4 C3 B2 A1`) |
 
----
 
 ## Supported 802.11 Frame Types
 
@@ -169,7 +161,6 @@ Downloads the latest Wireshark OUI database from `https://www.wireshark.org/down
 | **Control** | RTS, CTS, ACK, PS-Poll, BAR, BA, CF-End |
 | **Data** | Data, Null, QoS Data, QoS Null |
 
----
 
 ## Troubleshooting
 
@@ -188,9 +179,8 @@ Log out and back in for the change to take effect.
 **`Bad packet length` errors**
 The PCAP stream lost sync. The tool will automatically attempt to re-sync to the magic bytes.
 
----
-
 ## License
 Released under the [MIT License](./LICENSE.txt).
 
+## Notice
 This project is released for educational and research purposes. Use responsibly and only on networks you own or have explicit permission to monitor.
